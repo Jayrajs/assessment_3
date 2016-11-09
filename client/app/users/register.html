@@ -11,18 +11,31 @@
         ></flash-message>
 
         <!-- LOGIN FORM -->
-        <form ng-submit="ctrl.register()" novalidate>
+        <form name="registerForm" ng-submit="ctrl.register()" novalidate autocomplete="off">
             <div class="form-group">
                 <label>Username</label>
-                <input type="email" class="form-control" ng-model="ctrl.emailAddress" name="emailAddress" placeholder="Email address" required>
+                <input type="email" class="form-control" ng-model="ctrl.emailAddress"
+                       name="emailAddress" placeholder="Email address" required>
+                <div class="help-block"
+                     ng-show="registerForm.emailAddress.$error.required">
+                    <p>Email Address is mandatory</p>
+                </div>
             </div>
             <div class="form-group">
                 <label>Password</label>
-                <input type="password" class="form-control" ng-model="ctrl.password" name="password" placeholder="Password" required>
+                <input type="password" class="form-control" ng-model="ctrl.password"
+                       name="password" placeholder="Password" required>
+                <div ng-show="registerForm.password.$invalid">
+                    <p>Password is mandatory.</p>
+                </div>
             </div>
             <div class="form-group">
                 <label>Confirm Password</label>
-                <input type="password" class="form-control" ng-model="ctrl.confirmpassword" name="confirmpassword" placeholder="Confirm Password" required>
+                <input type="password" class="form-control" ng-model="ctrl.confirmpassword"
+                       name="confirmpassword" placeholder="Confirm Password" compare-to="ctrl.password" required>
+                <div ng-show="registerForm.confirmpassword.$invalid">
+                    <p>Passwords do not match</p>
+                </div>
             </div>
 
             <button type="submit" class="btn btn-default btn-lg">Register</button>
