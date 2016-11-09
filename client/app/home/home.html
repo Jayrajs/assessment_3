@@ -6,9 +6,15 @@
         cursor: pointer;
     }
 </style>
-<h1 align="center">Wedding Fireworks !</h1>
+<h1 align="center" class="tlt">
+    <ul class="texts">
+        <li data-out-effect="fadeOut" data-out-shuffle="true">Welcome to StackUp Wedding Gram</li>
+        <li data-in-effect="fadeIn">A Killer App !</li>
+    </ul>
+</h1>
 <canvas id="c"></canvas>
 <script>
+    $('.tlt').textillate();
     var c = document.getElementById("c");
     var ctx = c.getContext("2d");
     var cH;

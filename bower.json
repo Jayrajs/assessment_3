@@ -25,6 +25,8 @@
     "angular-flash-alert": "^2.3.0",
     "angular-sanitize": "^1.5.8",
     "bootstrap-social": "^5.0.0",
-    "animejs": "^1.1.2"
+    "animejs": "^1.1.2",
+    "textillate": "^0.4.0",
+    "animate.css": "^3.5.2"
   }
 }
