@@ -1,5 +1,4 @@
 .idea
-client/bower_components
 node_modules
 logs
 bower_components
