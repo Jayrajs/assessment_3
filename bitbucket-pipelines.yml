@@ -10,6 +10,6 @@ pipelines:
     - step:
         script: # Modify the commands below to build your repository.
           - npm install
-          - npm install bower -g
+          - sudo npm install bower -g
           - bower install
           - forever startall
