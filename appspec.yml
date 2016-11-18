@@ -1,39 +1,39 @@
 version: 0.0
 os: linux
 files:
- - source: /
-  destination: /home/ubuntu/weddinggram-app
+  - source: /
+    destination: /home/ubuntu/weddinggram-app
 
 permissions:
- - object: /
-   pattern: "**"
-   owner: ubuntu
-   group: ubuntu
- - object:  bin/*.sh
-  mode: 777
+  - object: /
+    pattern: "**"
+    owner: ubuntu
+    group: ubuntu
+  - object:  bin/*.sh
+    mode: 777
 
 hooks:
- ApplicationStop:
-   - location: bin/stop.sh
-     timeout: 10
-     runas: ubuntu
+  ApplicationStop:
+    - location: bin/stop.sh
+      timeout: 10
+      runas: ubuntu
 
- DownloadBundle:
-   - location: bin/install-pkgs.sh
-     timeout: 1200
-     runas: ubuntu
+  DownloadBundle:
+    - location: bin/install-pkgs.sh
+      timeout: 1200
+      runas: ubuntu
 
- ApplicationStart:
-   - location: bin/start.sh
-     timeout: 60
-     runas: ubuntu
+  ApplicationStart:
+    - location: bin/start.sh
+      timeout: 60
+      runas: ubuntu
 
- ValidateService:
-   - location: bin/status.sh
-     timeout: 10
-     runas: ubuntu
+  ValidateService:
+    - location: bin/status.sh
+      timeout: 10
+      runas: ubuntu
 
- BeforeInstall:
-   - location: bin/backup.sh
-     timeout: 10
-     runas: ubuntu
+  BeforeInstall:
+    - location: bin/backup.sh
+      timeout: 10
+      runas: ubuntu
