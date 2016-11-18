@@ -12,4 +12,5 @@ pipelines:
           - wget https://bootstrap.pypa.io/get-pip.py
           - python get-pip.py
           - pip install boto3==1.3.0
+          - zip -r weddinggram.zip *
           - python s3_upload.py weddinggram weddinggram.zip weddinggram-deploy
