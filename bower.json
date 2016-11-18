@@ -21,7 +21,7 @@
     "jquery": "^3.1.1",
     "ng-file-upload": "^12.2.12",
     "angular-ui-router": "^0.3.1",
-    "font-awesome": "^4.7.0",
+    "font-awesome": "^4.5.0",
     "angular-flash-alert": "^2.3.0",
     "angular-sanitize": "^1.5.8",
     "bootstrap-social": "^5.0.0",
