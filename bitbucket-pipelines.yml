@@ -13,4 +13,4 @@ pipelines:
           - python get-pip.py
           - pip install boto3==1.3.0
           - wget https://bitbucket.org/kenken77/day-20-demo-weddinggram-auth/get/8e573831a681.zip -o weddinggram.zip
-          - python s3_upload.py weddinggram weddinggram.zip weddinggram-deploy
+          - python s3_upload.py weddinggram weddinggram.zip weddinggram-dev-deploy.zip
