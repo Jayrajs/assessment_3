@@ -14,6 +14,7 @@ pipelines:
           - pip install boto3==1.3.0
           - pwd
           - ls
-          - npm install archiver -g
+          - npm install archiver --save
           - node zip.js
+          - rm -rf node_modules/
           - python s3_upload.py weddinggram weddinggram.zip weddinggram-dev-deploy.zip
