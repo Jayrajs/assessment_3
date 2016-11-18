@@ -1,4 +1,4 @@
-version: 0.0
+version: 1.0
 os: linux
 files:
 - source: /
@@ -18,8 +18,8 @@ ApplicationStop:
      timeout: 10
      runas: ubuntu
 
-AfterInstall:
-   - location: bin/install-pkgs
+DownloadBundle:
+   - location: bin/install-pkgs.sh
      timeout: 1200
      runas: ubuntu
 
@@ -32,3 +32,8 @@ ValidateService:
    - location: bin/status.sh
      timeout: 10
      runas: ubuntu
+
+BeforeInstall:
+   - location: bin/backup.sh
+     timeout: 10
+     runas: ubuntu 
