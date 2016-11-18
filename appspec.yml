@@ -15,7 +15,7 @@ permissions:
     group: ubuntu
     mode: 777
     type: 
-      - file
+      - directory
 
 hooks:
   ApplicationStop:
