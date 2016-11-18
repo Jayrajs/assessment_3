@@ -9,31 +9,31 @@ permissions:
     pattern: "**"
     owner: ubuntu
     group: ubuntu
-  - object:  bin/*.sh
+  - object:  bin/*
     mode: 777
 
 hooks:
   ApplicationStop:
-    - location: bin/stop.sh
-      timeout: 10
+    - location: bin/stop
+      timeout: 300
       runas: ubuntu
 
   DownloadBundle:
-    - location: bin/install-pkgs.sh
-      timeout: 1200
+    - location: bin/install-pkgs
+      timeout: 300
       runas: ubuntu
 
   ApplicationStart:
-    - location: bin/start.sh
-      timeout: 60
+    - location: bin/start
+      timeout: 300
       runas: ubuntu
 
   ValidateService:
-    - location: bin/status.sh
-      timeout: 10
+    - location: bin/status
+      timeout: 300
       runas: ubuntu
 
   BeforeInstall:
-    - location: bin/backup.sh
-      timeout: 10
+    - location: bin/backup
+      timeout: 300
       runas: ubuntu
