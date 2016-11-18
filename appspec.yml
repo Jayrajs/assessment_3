@@ -9,10 +9,12 @@ permissions:
    pattern: "**"
    owner: ubuntu
    group: ubuntu
+- object:  bin/*.sh
+  mode: 777
 
 hooks:
 ApplicationStop:
-   - location: bin/stop
+   - location: bin/stop.sh
      timeout: 10
      runas: ubuntu
 
@@ -22,11 +24,11 @@ AfterInstall:
      runas: ubuntu
 
 ApplicationStart:
-   - location: bin/start
+   - location: bin/start.sh
      timeout: 60
      runas: ubuntu
 
 ValidateService:
-   - location: bin/status
+   - location: bin/status.sh
      timeout: 10
      runas: ubuntu
