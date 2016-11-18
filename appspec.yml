@@ -36,4 +36,4 @@ ValidateService:
 BeforeInstall:
    - location: bin/backup.sh
      timeout: 10
-     runas: ubuntu 
+     runas: ubuntu
