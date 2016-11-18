@@ -9,7 +9,7 @@ permissions:
     pattern: "**"
     owner: ubuntu
     group: ubuntu
-  - object:  bin/*
+  - object: bin/*
     mode: 777
 
 hooks:
