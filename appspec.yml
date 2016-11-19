@@ -9,24 +9,6 @@ permissions:
     pattern: "**"
     owner: ubuntu
     group: ubuntu
-  - object: /home/ubuntu/weddinggram-app/bin/start
-    owner: ubuntu
-    group: ubuntu
-    mode: 777
-    type: 
-      - file
-  - object: /home/ubuntu/weddinggram-app/bin/status
-    owner: ubuntu
-    group: ubuntu
-    mode: 777
-    type:
-      - file
-  - object: /home/ubuntu/weddinggram-app/bin/install-pkgs
-    owner: ubuntu
-    group: ubuntu
-    mode: 777
-    type:
-      - file
 
 hooks:
   ApplicationStop:
