@@ -15,7 +15,7 @@
                     if(AuthFactory.isLoggedIn()){
                         vm.emailAddress = "";
                         vm.password = "";
-                        $state.go("home");
+                        $state.go("weddinggram");
                     }else{
                         Flash.create('danger', "Ooops having issue logging in!", 0, {class: 'custom-class', id: 'custom-id'}, true);
                         $state.go("SignIn");

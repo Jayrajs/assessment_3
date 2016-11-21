@@ -56,7 +56,7 @@ angular.module('weddingGramApp').factory('AuthFactory',
                             getUserStatus(function(result){
                                 if(result){
                                     deferred.resolve();
-                                    $state.go('home');
+                                    $state.go('weddinggram');
                                 }else{
                                     deferred.reject();
                                     Flash.create('danger', "Ooops having issue logging in!", 0, {class: 'custom-class', id: 'custom-id'}, true);

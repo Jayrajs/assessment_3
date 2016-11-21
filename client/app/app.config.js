@@ -13,31 +13,15 @@
                         templateUrl: "../app/home/navigation.html"
                     },
                     "content": {
-                        templateUrl: "../app/home/home.html"
+                        templateUrl: "../app/users/login.html"
                     }
                 },
-                controller : 'HomePageAppCtrl',
-                controllerAs : 'ctrl'
-            })
-            .state('home',{
-                url : '/home',
-                views: {
-                    "nav": {
-                        templateUrl: "../app/home/navigation.html"
-                    },
-                    "content": {
-                        templateUrl: "../app/home/home.html"
-                    }
-                },
-                controller : 'HomePageAppCtrl',
+                controller : 'LoginCtrl',
                 controllerAs : 'ctrl'
             })
             .state("SignIn", {
                 url: "/signIn",
                 views: {
-                    "nav": {
-                        templateUrl: "../app/home/navigation.html"
-                    },
                     "content": {
                         templateUrl: "../app/users/login.html"
                     }
@@ -48,9 +32,6 @@
             .state("SignUp", {
                 url: "/signUp",
                 views: {
-                    "nav": {
-                        templateUrl: "../app/home/navigation.html"
-                    },
                     "content": {
                         templateUrl: "../app/users/register.html"
                     }
@@ -99,7 +80,7 @@
             })
             .state('back',{
                 url : '/back',
-                templateUrl :'../app/home/home.html',
+                templateUrl :'./app/users/login.html',
                 controller : 'PostListCtrl',
                 controllerAs : 'ctrl'
             })
@@ -117,7 +98,7 @@
                 controllerAs : 'ctrl'
             })
 
-        $urlRouterProvider.otherwise("/");
+        $urlRouterProvider.otherwise("/signIn");
 
 
     }
