@@ -51,7 +51,7 @@ module.exports = function (app, passport) {
     });
 
     app.post("/login", passport.authenticate("local", {
-        successRedirect: "/home",
+        successRedirect: "/home.html#/weddinggram",
         failureRedirect: "/",
         failureFlash : true
     }));
@@ -61,7 +61,7 @@ module.exports = function (app, passport) {
     }));
 
     app.get("/oauth/google/callback", passport.authenticate("google", {
-        successRedirect: "/home",
+        successRedirect: "/home.html#/weddinggram",
         failureRedirect: "/signUp"
     }));
 
@@ -70,7 +70,7 @@ module.exports = function (app, passport) {
     }));
 
     app.get("/oauth/facebook/callback", passport.authenticate("facebook", {
-        successRedirect: "/home",
+        successRedirect: "/home.html#/weddinggram",
         failureRedirect: "/signUp",
         failureFlash : true
     }));
@@ -83,7 +83,7 @@ module.exports = function (app, passport) {
         });
 
     app.get('/oauth/linkedin/callback', passport.authenticate('linkedin', {
-        successRedirect: '/home',
+        successRedirect: '/home.html#/weddinggram',
         failureRedirect: '/signUp',
         failureFlash : true
     }));
@@ -92,7 +92,7 @@ module.exports = function (app, passport) {
 
     app.get('/oauth/wechat/callback', passport.authenticate('wechat', {
         failureRedirect: '/signUp',
-        successReturnToOrRedirect: '/',
+        successReturnToOrRedirect: '/home.html#/weddinggram',
         failureFlash : true
     }));
 
@@ -101,7 +101,7 @@ module.exports = function (app, passport) {
     // handle the callback after twitter has authenticated the user
     app.get('/oauth/twitter/callback',
         passport.authenticate('twitter', {
-            successRedirect : '/home',
+            successRedirect : '/home.html#/weddinggram',
             failureRedirect : '/signUp'
         }));
 
