@@ -4,10 +4,11 @@
         .controller("ImageUploadCtrl", [
             "Upload",
             "$http",
+            "$rootScope",
             UploadCtrl
         ]);
 
-    function UploadCtrl(Upload, $http) {
+    function UploadCtrl(Upload, $http, $rootScope) {
 
         var self = this;
         self.form = {file: null};
@@ -62,6 +63,8 @@
                 }
             }).then(function (resp) {
                 afterUpload(resp.config.data.key);
+                console.log("before broadcast !");
+                $rootScope.$broadcast('updateList');
             }, function (resp) {
                 // Called when upload fails
             }, function (evt) {

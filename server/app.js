@@ -3,11 +3,12 @@ var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var session = require("express-session");
 var passport = require("passport");
+var flash = require('connect-flash');
 
 var config = require("./config");
 
 var app = express();
-
+app.use(flash());
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());

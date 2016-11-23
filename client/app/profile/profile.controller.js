@@ -8,7 +8,7 @@
         var vm = this;
         vm.sociallogins = [];
         UserAPI.getLocalProfile().then(function(result){
-            console.log(result.data);
+            //console.log(result.data);
             vm.localProfile = result.data;
         });
 

@@ -1,10 +1,22 @@
 (function () {
     angular
         .module("weddingGramApp")
-        .controller("PostListCtrl", ["PostAPI", "$http", PostListCtrl]);
+        .controller("PostListCtrl", ["PostAPI", "$http", "$scope",  PostListCtrl]);
 
-    function PostListCtrl(PostAPI, $http) {
+    function PostListCtrl(PostAPI, $http, $scope) {
         var self = this;
+
+        $scope.$on("updateList",function(){
+   		console.log("refresh list");
+                PostAPI
+            	  .me()
+                  .then(function (response) {
+                	self.posts = response.data;
+           	 })
+            	  .catch(function (err) {
+                	console.log(err);
+            	 });
+	});
 
         PostAPI
             .me()

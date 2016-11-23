@@ -102,6 +102,8 @@ exports.update = function (req, res) {
 
 exports.me = function (req, res) {
     PostArr = [];
+    console.log(req.user);
+    console.log(" userid " + req.user.id);
     Post
         .findAll({
             where: {

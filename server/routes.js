@@ -62,7 +62,7 @@ module.exports = function (app, passport) {
 
     app.get("/oauth/google/callback", passport.authenticate("google", {
         successRedirect: "/home.html#/weddinggram",
-        failureRedirect: "/signUp"
+        failureRedirect: "/home.html#/signIn"
     }));
 
     app.get("/oauth/facebook", passport.authenticate("facebook", {
@@ -71,7 +71,7 @@ module.exports = function (app, passport) {
 
     app.get("/oauth/facebook/callback", passport.authenticate("facebook", {
         successRedirect: "/home.html#/weddinggram",
-        failureRedirect: "/signUp",
+        failureRedirect: "/home.html#/signIn",
         failureFlash : true
     }));
 
@@ -84,14 +84,14 @@ module.exports = function (app, passport) {
 
     app.get('/oauth/linkedin/callback', passport.authenticate('linkedin', {
         successRedirect: '/home.html#/weddinggram',
-        failureRedirect: '/signUp',
+        failureRedirect: '/home.html#/signIn',
         failureFlash : true
     }));
 
     app.get('/oauth/wechat', passport.authenticate('wechat'));
 
     app.get('/oauth/wechat/callback', passport.authenticate('wechat', {
-        failureRedirect: '/signUp',
+        failureRedirect: '/home.html#/signIn',
         successReturnToOrRedirect: '/home.html#/weddinggram',
         failureFlash : true
     }));
@@ -102,7 +102,7 @@ module.exports = function (app, passport) {
     app.get('/oauth/twitter/callback',
         passport.authenticate('twitter', {
             successRedirect : '/home.html#/weddinggram',
-            failureRedirect : '/signUp'
+            failureRedirect : '/home.html#/signIn'
         }));
 
     app.get("/status/user", function (req, res) {

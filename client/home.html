@@ -24,8 +24,9 @@
     </a>
 </div>
 <div class="container" ui-view="nav"></div>
-<div class="container" ui-view="content"></div>
-
+<div data-ng-controller="HomePageAppCtrl as homeCtrl"> 
+	<div class="container" ui-view="content"></div>
+</div>
 
 <!--Place JS scripts after this line-->
 <!--BOWER_COMPONENTS_JS_START-->

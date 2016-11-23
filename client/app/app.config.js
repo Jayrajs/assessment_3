@@ -49,7 +49,13 @@
                         templateUrl: "../app/profile/profile.html"
                     }
                 },
-                //resolve: { authenticated: AuthFactory.isLoggedIn },
+                resolve: {
+			authenticated: function (AuthFactory){
+						console.log("authenticated ?");
+						console.log(AuthFactory.isLoggedIn());
+						return AuthFactory.isLoggedIn();
+				       }
+		 },
                 controller : 'MyAccountCtrl',
                 controllerAs : 'ctrl'
             })
@@ -63,7 +69,7 @@
                         templateUrl: "../app/home/wedding-gram.html"
                     }
                 },
-                //resolve: { authenticated: AuthFactory.isLoggedIn },
+                //resolve: { authenticated: user },
                 controller : 'PostListCtrl',
                 controllerAs : 'ctrl'
             })
@@ -77,7 +83,7 @@
                         templateUrl: "../app/profile/profile.html"
                     }
                 },
-                //resolve: { authenticated: AuthFactory.isLoggedIn },
+                //resolve: { authenticated: user },
                 controller : 'PostListCtrl',
                 controllerAs : 'ctrl'
             })
@@ -97,7 +103,7 @@
                         templateUrl: "../app/comment/comment.html"
                     }
                 },
-                //resolve: { authenticated: AuthFactory.isLoggedIn },
+                //resolve: { authenticated: user },
                 controller : 'CommentDetailCtrl',
                 controllerAs : 'ctrl'
             })

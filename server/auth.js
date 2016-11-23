@@ -39,6 +39,7 @@ module.exports = function (app, passport) {
     }
 
     function verifyCallback(accessToken, refreshToken, profile, done) {
+        console.log(profile);
         if(profile.provider === 'google' || profile.provider === 'facebook'|| profile.provider === 'linkedin'){
             id = profile.id;
             email = profile.emails[0].value;
@@ -89,6 +90,7 @@ module.exports = function (app, passport) {
     }
 
     passport.use(new LinkedInStrategy({
+        passReqToCallback : true,
         clientID: config.linkedin_key,
         clientSecret: config.Linkedin_secret,
         callbackURL: config.Linkedin_callback_url,
@@ -110,6 +112,7 @@ module.exports = function (app, passport) {
     ));
 
     passport.use(new TwitterStrategy({
+        passReqToCallback : true,
         consumerKey: config.Twitter_key,
         consumerSecret: config.Twitter_secret,
         callbackURL: config.Twitter_callback_url
