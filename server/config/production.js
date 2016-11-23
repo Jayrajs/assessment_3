@@ -5,8 +5,9 @@ module.exports = {
     aws: {
         id: "AKIAIWKXTGYCOTZW6QYA",
         key: "xFOWIuR0hMbQvsodFa5VenHWwnNf3fDibyjMpZIb",
-        url: "https://wedding-gram.s3.amazonaws.com",
-        bucket: "wedding-gram"
+        url: "https://nus-stackup.s3.amazonaws.com",
+        bucket: "nus-stackup",
+        region: "ap-southeast-1"
     },
     port: process.env.PORT || 3000,
     seed: process.env.SEED || false,

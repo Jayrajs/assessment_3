@@ -47,7 +47,7 @@ module.exports = function (app, passport) {
     app.post('/register', UserController.register);
 
     app.get('/home', isAuthenticated, function(req, res) {
-        res.redirect('../');
+        res.redirect('../home.html#/weddinggram');
     });
 
     app.post("/login", passport.authenticate("local", {
