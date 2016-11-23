@@ -61,12 +61,11 @@
                     self.errorMessage = err.message;
                 });
         };
-        
+
         if($stateParams.data){
             var data=  JSON.parse($stateParams.data);
             self.data=data;
             self.getComments( self.data.id)
         }
-        
     }
 })();
