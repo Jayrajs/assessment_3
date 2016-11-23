@@ -2,7 +2,6 @@
 
     <div class="col-sm-4 col-sm-offset-2">
 
-        <h1><span class="fa fa-user-plus"></span> Sign Up</h1>
         <br>
         <flash-message
                 duration="5000"
@@ -12,8 +11,7 @@
 
         <!-- LOGIN FORM -->
         <form name="registerForm" ng-submit="ctrl.register()" novalidate autocomplete="off">
-            <div class="form-group">
-                <label>Username</label>
+            <div class="form-group input-field col s6">
                 <input type="email" class="form-control" ng-model="ctrl.emailAddress"
                        name="emailAddress" placeholder="Email address" required>
                 <div class="help-block"
@@ -21,16 +19,30 @@
                     <p>Email Address is mandatory</p>
                 </div>
             </div>
-            <div class="form-group">
-                <label>Password</label>
+            <div class="form-group input-field col s6">
+                <input type="text" class="form-control" ng-model="ctrl.firstName"
+                       name="firstName" placeholder="First Name" required>
+                <div class="help-block"
+                     ng-show="registerForm.firstName.$error.required">
+                    <p>First Name is mandatory</p>
+                </div>
+            </div>
+            <div class="form-group input-field col s6">
+                <input type="text" class="form-control" ng-model="ctrl.lastName"
+                       name="lastName" placeholder="Last Name" required>
+                <div class="help-block"
+                     ng-show="registerForm.lastName.$error.required">
+                    <p>Last Name is mandatory</p>
+                </div>
+            </div>
+            <div class="form-group input-field col s6">
                 <input type="password" class="form-control" ng-model="ctrl.password"
                        name="password" placeholder="Password" required>
                 <div ng-show="registerForm.password.$invalid">
                     <p>Password is mandatory.</p>
                 </div>
             </div>
-            <div class="form-group">
-                <label>Confirm Password</label>
+            <div class="form-group input-field col s6">
                 <input type="password" class="form-control" ng-model="ctrl.confirmpassword"
                        name="confirmpassword" placeholder="Confirm Password" compare-to="ctrl.password" required>
                 <div ng-show="registerForm.confirmpassword.$invalid">
@@ -44,16 +56,10 @@
         <p>
             Already have an account? <a ui-sref="SignIn">Login</a>
         </p>
-        <p>
-            Or Go <a ui-sref="defaultApp">home</a>.
-        </p>
+
     </div>
 
     <div class="col-sm-4">
-        <h1>
-            <span class="fa fa-user-plus"></span> Sign Up With
-        </h1>
-
         <div style="margin-top: 40px;">
             <a href="/oauth/google" class="btn btn-block btn-social btn-google">
                 <i class="fa fa-google-plus" aria-hidden="true"></i> Google

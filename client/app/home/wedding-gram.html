@@ -1,6 +1,6 @@
 <div class="container main"
      data-ng-controller="PostListCtrl as ctrl">
-    <div class="row w-card" data-ng-repeat="post in ctrl.posts track by $index">
+    <div class="row w-card" data-ng-repeat="post in ctrl.posts | orderBy: 'createdAt':true track by $index ">
         <div class="col-xs-3 visible-md visible-lg"></div>
         <div class="col-md-6 col-xs-12">
 
@@ -8,7 +8,7 @@
                 <span class="profile">
                     <img src="/assets/images/default-user.jpg" alt=""/>
                 </span>
-                <span style="line-height: 34px; margin-left: 10px;">Nikhil Bhandari</span>
+                <span style="line-height: 34px; margin-left: 10px;">{{post.user.firstName}} {{post.user.lastName}}</span>
 
                 <span style="float: right;line-height: 34px;">{{post.createdAt | date:'medium'}}</span>
 
@@ -44,7 +44,7 @@
              aria-labelledby="myModalLabel"
              aria-hidden="true"
              data-ng-class="{'show': uploader.showUpload, 'in': uploader.showUpload}">
-            <div class="modal-dialog" role="document">
+            <!--<div class="modal-dialog" role="document">-->
                 <div class="modal-content">
                     <form name="form" ng-submit="form.$valid && uploader.submit()">
 
@@ -91,7 +91,7 @@
                         </div>
                     </form>
                 </div>
-            </div>
+            <!--</div>-->
         </div>
         <a class="upload" data-ng-click="uploader.showUpload = true">+</a>
     </div>

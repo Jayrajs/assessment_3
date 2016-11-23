@@ -63,11 +63,24 @@ exports.create = function (req, res) {
                 .create({
                     text: req.body.text,
                     postId: req.body.postId,
-                    userId: 1
+                    userId: req.user.id
 
                 })
                 .then(function (comment) {
-                    res.json(comment)
+                    Comment
+                        .findOne({
+                            where: {
+                                userId: comment.userId,
+                                postId: comment.postId
+                            },
+                            include: [User]
+                        })
+                        .then(function (comment) {
+                            res.json(comment);
+                        })
+                        .catch(function (err) {
+                            handleErr(res, err);
+                        })
                 })
                 .catch(function (err) {
                     handleErr(res, err);

@@ -9,7 +9,7 @@
         <div class="description" data-ng-controller="CommentDetailCtrl as ctrl">
             <div class="comment-section">
                 <div data-ng-repeat="comment in ctrl.comments" class="comment" style="">
-                    {{comment.text}}
+                    {{comment.text}} - {{comment.user.firstName}} {{comment.user.lastName}}  | {{comment.createdAt | date:'medium'}}
                             <span style="float: right; margin-left: 20px;">
                                 <i class="fa fa-times theme-color fa-1x" aria-hidden="true" ng-click="ctrl.deleteComment(comment)"></i>
                             </span>

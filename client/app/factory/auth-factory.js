@@ -106,14 +106,14 @@ angular.module('weddingGramApp').factory('AuthFactory',
 
             }
 
-            function register(username, password) {
+            function register(username, password, firstName, lastName) {
 
                 // create a new instance of deferred
                 var deferred = $q.defer();
 
                 // send a post request to the server
                 $http.post('/register',
-                    {username: username, password: password})
+                    {username: username, password: password, firstName: firstName, lastName: lastName})
                 // handle success
                     .success(function (data, status) {
                         if(status){

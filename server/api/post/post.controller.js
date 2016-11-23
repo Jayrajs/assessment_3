@@ -65,7 +65,7 @@ exports.create = function (req, res) {
         .create({
             url: req.body.url,
             caption: req.body.caption,
-            userId: 1
+            userId: req.user.id
         })
         .then(function (post) {
             res.json(post);
@@ -102,16 +102,17 @@ exports.update = function (req, res) {
 
 exports.me = function (req, res) {
     PostArr = [];
-    console.log(req.user);
-    console.log(" userid " + req.user.id);
+    //console.log(req.user);
+    //console.log(" userid " + req.user.id);
     Post
         .findAll({
             where: {
-                userId: 1
+                //userId: 1
             },
             include: [User]
         })
         .then(function (posts) {
+            console.log(posts);
             res.json(posts || []);
         })
         .catch(function (err) {

@@ -26,7 +26,12 @@ exports.register = function(req, res) {
     }
     console.log();
     var hashpassword = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(8), null);
-    User.findOrCreate({where: {email: req.body.username,},defaults: { username: req.body.username, email: req.body.username,  password: hashpassword}})
+    User.findOrCreate({where: {email: req.body.username,},defaults: {
+        username: req.body.username,
+        email: req.body.username,
+        password: hashpassword,
+        firstName: req.body.firstName,
+        lastName: req.body.lastName}})
         .spread(function(user, created) {
             if(created){
                 user.password = "";

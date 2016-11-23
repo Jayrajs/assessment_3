@@ -9,11 +9,13 @@
     function RegisterCtrl($sanitize, $state, AuthFactory, Flash){
         var vm = this;
         vm.emailAddress = "";
+        vm.firstName = "";
+        vm.lastName = "";
         vm.password = "";
         vm.confirmpassword = "";
 
         vm.register = function () {
-            AuthFactory.register($sanitize(vm.emailAddress), $sanitize(vm.password))
+            AuthFactory.register($sanitize(vm.emailAddress), $sanitize(vm.password), $sanitize(vm.firstName), $sanitize(vm.lastName))
                 .then(function () {
                     vm.disabled = false;
 
