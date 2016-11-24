@@ -1,29 +1,6 @@
-# README #
-
-This README would normally document whatever steps are necessary to get your application up and running.
-
-### What is this repository for? ###
-
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
-
-### How do I get set up? ###
-
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
-
-### Contribution guidelines ###
-
-* Writing tests
-* Code review
-* Other guidelines
-
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
+#!/bin/bash
+export NODE_ENV=production
+export AWS_ACCESS_KEY_ID=AKIAIWKXTGYCOTZW6QYA
+export AWS_SECRET_ACCESS_KEY=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
+export MYSQL_DATABASE_URL=mysql://root:password@123@localhost/wedding_gram?reconnect=true
+forever start --minUptime 1234 --spinSleepTime 3421 ~/weddinggram-app/server/app.js > ~/logs/output.log &
