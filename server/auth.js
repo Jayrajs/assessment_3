@@ -90,7 +90,6 @@ module.exports = function (app, passport) {
     }
 
     passport.use(new LinkedInStrategy({
-        passReqToCallback : true,
         clientID: config.linkedin_key,
         clientSecret: config.Linkedin_secret,
         callbackURL: config.Linkedin_callback_url,
