@@ -4,6 +4,7 @@
             "ngFileUpload",
             "ui.router",
             "ngFlash",
-            "ngSanitize"
+            "ngSanitize",
+            'ngProgress'
         ]);
 })();

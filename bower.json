@@ -27,6 +27,8 @@
     "bootstrap-social": "^5.0.0",
     "animejs": "^1.1.2",
     "textillate": "^0.4.0",
-    "animate.css": "^3.5.2"
+    "animate.css": "^3.5.2",
+    "angular-loading-bar": "^0.9.0",
+    "ngprogress": "^1.1.3"
   }
 }
