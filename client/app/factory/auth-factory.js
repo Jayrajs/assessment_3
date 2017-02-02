@@ -51,9 +51,7 @@ angular.module('weddingGramApp').factory('AuthFactory',
                 $http.post('/login',
                     userProfile)
                 // handle success
-                    .then(function (response) {
-                        status = response.status;
-			data = response.data;
+                    .success(function (data, status) {
                         if(status == 200){
                             getUserStatus(function(result){
                                 if(result){
@@ -71,8 +69,9 @@ angular.module('weddingGramApp').factory('AuthFactory',
                             Flash.create('danger', "Ooops having issue logging in!", 0, {class: 'custom-class', id: 'custom-id'}, true);
                             deferred.reject();
                         }
+		    })
                     // handle error
-                    }, function (response) {
+                    .error(function (data) {
                         user = false;
                         Flash.clear();
                         Flash.create('danger', "Ooops having issue logging in!", 0, {class: 'custom-class', id: 'custom-id'}, true);
