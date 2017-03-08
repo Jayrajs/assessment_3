@@ -5,6 +5,7 @@
 
     function PostListCtrl(PostAPI, $http, $scope) {
         var self = this;
+        self.modalShown = false;
 
         $scope.$on("updateList",function(){
    		console.log("refresh list");
@@ -37,6 +38,12 @@
                 .catch(function () {
 
                 });
+        };
+
+
+        self.toggleModal = function() {
+            console.log("toggle Modal !");
+            self.modalShown = !self.modalShown;
         };
 
     }

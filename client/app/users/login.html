@@ -1,6 +1,6 @@
 <div class="container" ng-controller="LoginCtrl as ctrl">
 
-    <div class="col-sm-4 col-sm-offset-2">
+    <div class="col-sm-6 col-sm-offset-2">
         <br>
         <flash-message
                 duration="5000"
@@ -9,30 +9,36 @@
         ></flash-message>
         <!-- LOGIN FORM -->
         <form name="loginForm" ng-submit="ctrl.login()" novalidate autocomplete="off">
-            <div class="form-group input-field col s6">
+            <div class="form-group input-field col s6" ng-class="{ 'has-error': loginForm.email.$touched && loginForm.email.$invalid }">
                 <input type="email" class="form-control" ng-model="ctrl.user.email"
                        placeholder="Email address" name="email" required>
                 <div class="help-block"
-                     ng-show="loginForm.email.$error.required">
-                    <p>Email Address is mandatory</p>
+                     ng-messages="loginForm.email.$error" ng-if="loginForm.email.$touched">
+                    <span class="help-inline" ng-message="required">Email Address is mandatory</span>
+                    <span class="help-inline" ng-message="email">Email Address is invalid</span>
                 </div>
             </div>
-            <div class="form-group input-field col s6">
+            <div class="form-group input-field col s6" ng-class="{ 'has-error': loginForm.password.$touched && loginForm.password.$invalid}">
                 <input type="password" class="form-control" ng-model="ctrl.user.password"
-                       name="password" placeholder="Password" required>
+                       name="password" placeholder="Password" 
+                       minlength="8"
+                       ng-pattern="/^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/"
+                       required>
                 <div class="help-block"
-                     ng-show="loginForm.password.$error.required">
-                    <p>Password is mandatory</p>
+                     ng-messages="loginForm.password.$error" ng-if="loginForm.password.$touched">
+                    <span class="help-inline" ng-message="required">Password is mandatory.</span>
+                    <span class="help-inline" ng-message="minlength">Password must be at least 8 characters long.</span>
+                    <span class="help-inline" ng-message="pattern">Password must include a number, a special character (@, #, $), and both upper and lower cases.</span>
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-default btn-lg">Login</button>
+            <button type="submit" ng-disabled="loginForm.$invalid" class="btn btn-default btn-lg">Login</button>
         </form>
 
         <hr>
 
         <p>Need an account? <a ui-sref="SignUp">Signup</a></p>
-        <p>Forgot your password ? <a ui-sref="#">Reset</a></p>
+        <p>Forgot your password ? <a ui-sref="ResetPassword">Reset</a></p>
 
     </div>
 

@@ -49,6 +49,10 @@ module.exports = function (database) {
             type: Sequelize.STRING,
             allowNull: true
         },
+        isAdmin: {
+            type: Sequelize.BOOLEAN,
+            allowNull: true
+        },
         reset_password_sent_at: {
             type: Sequelize.DATE,
             allowNull: true

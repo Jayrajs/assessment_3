@@ -26,6 +26,11 @@ module.exports = function (app, passport) {
                 return done(null, false);
             }else{
                 if(bcrypt.compareSync(password , result.password)){
+                    var whereClause = {};
+                    whereClause.email = username;
+                    User
+                    .update({ reset_password_token: null},
+                    {where:  whereClause});
                     return done(null, result);
                 }else{
                     return done(null, false);

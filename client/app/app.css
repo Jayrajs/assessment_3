@@ -182,8 +182,15 @@ a.upload:hover{
 }
 
 div.modal-dialog {
-    margin-top: 210px;
+    margin-top: 1px;
+    margin: 0px 0px 0px 0px !important;
 }
+
+div.modal-lg{
+    width: 805px !important;
+    height: 300px !important;
+}
+
 
 .footer{
     text-align: center;
@@ -458,3 +465,8 @@ Profile Css*/
 }
 
 .custom-btn{ border-radius: 50%; width:32px; height:32px; line-height:18px;  }
+
+.autoModal.modal .modal-body{
+    max-height: 100%;
+    overflow-y:hidden;
+}

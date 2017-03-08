@@ -16,7 +16,9 @@ angular.module('weddingGramApp').factory('AuthFactory',
                 getUserStatus: getUserStatus,
                 login: login,
                 logout: logout,
-                register: register
+                register: register,
+                resetPassword: resetPassword,
+                changePassword: changePassword
             });
 
             function isLoggedIn() {
@@ -25,6 +27,10 @@ angular.module('weddingGramApp').factory('AuthFactory',
                 } else {
                     return false;
                 }
+            }
+
+            function isAdmin() {
+                console.log(user);
             }
 
             function getUserStatus(callback) {
@@ -51,7 +57,8 @@ angular.module('weddingGramApp').factory('AuthFactory',
                 $http.post('/login',
                     userProfile)
                 // handle success
-                    .success(function (data, status) {
+                    .then(function (data) {
+                        var status = data.status;
                         if(status == 200){
                             getUserStatus(function(result){
                                 if(result){
@@ -71,7 +78,7 @@ angular.module('weddingGramApp').factory('AuthFactory',
                         }
 		    })
                     // handle error
-                    .error(function (data) {
+                    .catch(function (data) {
                         user = false;
                         Flash.clear();
                         Flash.create('danger', "Ooops having issue logging in!", 0, {class: 'custom-class', id: 'custom-id'}, true);
@@ -91,12 +98,12 @@ angular.module('weddingGramApp').factory('AuthFactory',
                 // send a get request to the server
                 $http.get('/logout')
                 // handle success
-                    .success(function (data) {
+                    .then(function (data) {
                         user = false;
                         deferred.resolve();
                     })
                     // handle error
-                    .error(function (data) {
+                    .catch(function (data) {
                         user = false;
                         deferred.reject();
                     });
@@ -104,6 +111,65 @@ angular.module('weddingGramApp').factory('AuthFactory',
                 // return promise object
                 return deferred.promise;
 
+            }
+
+            function resetPassword(userProfile) {
+                // create a new instance of deferred
+                var deferred = $q.defer();
+
+                // send a post request to the server
+                $http.post('/reset-password',
+                    userProfile)
+                // handle success
+                    .then(function (data) {
+                        var status = data.status;
+                        if(status){
+                            deferred.resolve();
+                        } else {
+                            Flash.closeFlash();
+                            Flash.create('danger', "Reset password failed!", 0, {class: 'custom-class', id: 'custom-id'}, true);
+                            deferred.reject();
+                        }
+                    })
+                    // handle error
+                    .catch(function (data) {
+                        Flash.clear();
+                        Flash.create('danger', "Reset password failed!", 0, {class: 'custom-class', id: 'custom-id'}, true);
+                        deferred.reject();
+                    });
+
+                // return promise object
+                return deferred.promise;
+            }
+
+            function changePassword(userProfile) {
+                // create a new instance of deferred
+                var deferred = $q.defer();
+
+                // send a post request to the server
+                $http.post('/change-password',
+                    userProfile)
+                // handle success
+                    .then(function (data) {
+                        var status = data.status;
+                        if(status){
+                            console.log("--> change password Good !");
+                            deferred.resolve();
+                        } else {
+                            Flash.closeFlash();
+                            Flash.create('danger', "Change password failed!", 0, {class: 'custom-class', id: 'custom-id'}, true);
+                            deferred.reject();
+                        }
+                    })
+                    // handle error
+                    .catch(function (data) {
+                        Flash.clear();
+                        Flash.create('danger', "Change password failed!", 0, {class: 'custom-class', id: 'custom-id'}, true);
+                        deferred.reject();
+                    });
+
+                // return promise object
+                return deferred.promise;
             }
 
             function register(username, password, firstName, lastName) {
@@ -115,7 +181,8 @@ angular.module('weddingGramApp').factory('AuthFactory',
                 $http.post('/register',
                     {username: username, password: password, firstName: firstName, lastName: lastName})
                 // handle success
-                    .success(function (data, status) {
+                    .then(function (data) {
+                        var status = data.status;
                         if(status){
                             deferred.resolve();
                         } else {
@@ -125,7 +192,7 @@ angular.module('weddingGramApp').factory('AuthFactory',
                         }
                     })
                     // handle error
-                    .error(function (data) {
+                    .catch(function (data) {
                         Flash.clear();
                         Flash.create('danger', "Ooops something went wrong!", 0, {class: 'custom-class', id: 'custom-id'}, true);
                         deferred.reject();

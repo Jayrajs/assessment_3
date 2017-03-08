@@ -6,17 +6,40 @@ var Post = database.Post;
 
 module.exports = function () {
     if (config.seed) {
-        var hashpassword = bcrypt.hashSync("password@123", bcrypt.genSaltSync(8), null);
+        var hashpassword = bcrypt.hashSync("Password@123", bcrypt.genSaltSync(8), null);
         User
             .create({
-                username: "nikhil1",
+                username: "admin",
                 password: hashpassword,
-                firstName: "Nikhil",
-                lastName: "Bhandari",
-                addressLine1: "79 02 Ayer raja crescent",
+                firstName: "Admin",
+                lastName: "Admin",
+                addressLine1: "79 02 Ayer Rajah crescent",
                 addressLine2: "",
                 city: "Singapore",
-                email: "yes@yes.com",
+                email: "kenneth.phang@nus.edu.sg",
+                postcode: "42312",
+                isAdmin: true,
+                phone: "98832587",
+                google: "http://google.com",
+                facebook: "http://facebook.com",
+                twitter: "http://twitter.com"
+            })
+            .then(function (user) {
+                console.log(user);
+            }).catch(function () {
+                console.log("Error", arguments)
+            })
+        
+        User
+            .create({
+                username: "kenken64",
+                password: hashpassword,
+                firstName: "Kenneth",
+                lastName: "Phang",
+                addressLine1: "79 02 Ayer Rajah Crescent",
+                addressLine2: "",
+                city: "Singapore",
+                email: "kenneth.phang1977@gmail.com",
                 postcode: "42312",
                 phone: "98832587",
                 google: "http://google.com",

@@ -5,6 +5,8 @@
             "ui.router",
             "ngFlash",
             "ngSanitize",
-            'ngProgress'
+            "ngProgress",
+            "ngMessages",
+            "data-table"
         ]);
 })();

@@ -8,10 +8,13 @@
     <!--BOWER_COMPONENTS_CSS_START-->
     <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="/bower_components/bulma/css/bulma.css"/>
     <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="bower_components/angular-flash-alert/dist/angular-flash.min.css">
     <link rel="stylesheet" href="bower_components/animate.css/animate.min.css">
     <link rel="stylesheet" href="bower_components/ngprogress/ngProgress.css">
+    <link rel="stylesheet" type="text/css" href="/bower_components/angular-data-table/release/dataTable.css">
+
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
     <!--BOWER_COMPONENTS_CSS_END-->
@@ -20,12 +23,7 @@
 
     <!--CUSTOM_CSS_END-->
 </head>
-<body>
-<div class="header" style="margin: auto;">
-    <a ui-sref="SignIn">
-        <img src="/assets/images/logotransback.png" alt=""/>
-    </a>
-</div>
+<body ng-cloak>
 <div class="container" ui-view="nav"></div>
 <div data-ng-controller="HomePageAppCtrl as homeCtrl"> 
 	<div class="container" ui-view="content"></div>
@@ -39,12 +37,17 @@
 <script type="text/javascript" src="/bower_components/ng-file-upload/ng-file-upload.js"></script>
 <script type="text/javascript" src="/bower_components/ng-file-upload/ng-file-upload-shim.js"></script>
 <script type="text/javascript" src="/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+<script type="text/javascript" src="/bower_components/angular-messages/angular-messages.min.js"></script>
 <script type="text/javascript" src="/bower_components/angular-flash-alert/dist/angular-flash.min.js"></script>
 <script type="text/javascript" src="/bower_components/angular-sanitize/angular-sanitize.min.js"></script>
 <script type="text/javascript" src="/bower_components/animejs/anime.min.js"></script>
 <script type="text/javascript" src="/bower_components/letteringjs/jquery.lettering.js"></script>
+<script src="/bower_components/angular-data-table/release/dataTable.js"></script>
+
 <script type="text/javascript" src="/bower_components/textillate/jquery.textillate.js"></script>
+
 <script src="/bower_components/ngprogress/build/ngprogress.min.js"></script>
+
 <!-- Compiled and minified JavaScript -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
 <!--BOWER_COMPONENTS_JS_END-->
@@ -52,6 +55,7 @@
 <script type="text/javascript" src="/app/app.js"></script>
 <script type="text/javascript" src="/app/factory/auth-factory.js"></script>
 <script type="text/javascript" src="/app/directive/password-directive.js"></script>
+<script type="text/javascript" src="/app/directive/modal.show.directive.js"></script>
 <script type="text/javascript" src="/app/app.config.js"></script>
 <script type="text/javascript" src="/app/services/post-api.service.js"></script>
 <script type="text/javascript" src="/app/services/users-api.service.js"></script>
@@ -64,6 +68,10 @@
 <script type="text/javascript" src="/app/users/users-login.controller.js"></script>
 <script type="text/javascript" src="/app/users/users-register.controller.js"></script>
 <script type="text/javascript" src="/app/users/users-logout.controller.js"></script>
+<script type="text/javascript" src="/app/users/user.resetpasswd.controller.js"></script>
+<script type="text/javascript" src="/app/profile/change.passwd.controller.js"></script>
+<script type="text/javascript" src="/app/home/guest.controller.js"></script>
+
 <!--CUSTOM_JS_END-->
 
 </body>

@@ -39,6 +39,16 @@
                 controller : 'RegisterCtrl',
                 controllerAs : 'ctrl'
             })
+            .state("ResetPassword", {
+                url: "/ResetPassword",
+                views: {
+                    "content": {
+                        templateUrl: "../app/users/reset-password.html"
+                    }
+                },
+                controller : 'ResetPasswordCtrl',
+                controllerAs : 'ctrl'
+            })
             .state("MyAccount", {
                 url: "/MyAccount",
                 views: {
@@ -59,6 +69,26 @@
                 controller : 'MyAccountCtrl',
                 controllerAs : 'ctrl'
             })
+            .state("ChangePassword", {
+                    url: "/ChangePassword",
+                    views: {
+                        "nav": {
+                            templateUrl: "../app/home/navigation.html"
+                        },
+                        "content": {
+                            templateUrl: "../app/profile/changePassword.html"
+                        }
+                    },
+                    resolve: {
+                authenticated: function (AuthFactory){
+                            console.log("authenticated ?");
+                            console.log(AuthFactory.isLoggedIn());
+                            return AuthFactory.isLoggedIn();
+                        }
+            },
+                    controller : 'ChangePasswordCtrl',
+                    controllerAs : 'ctrl'
+                })
             .state('weddinggram',{
                 url : '/weddinggram',
                 views: {
@@ -77,6 +107,66 @@
                                        }
                  },
                 controller : 'PostListCtrl',
+                controllerAs : 'ctrl'
+            })
+            .state('aboutus',{
+                url : '/aboutus',
+                views: {
+                    "nav": {
+                        templateUrl: "../app/home/navigation.html"
+                    },
+                    "content": {
+                        templateUrl: "../app/home/aboutus.html"
+                    }
+                },
+                resolve: {
+                        authenticated: function (AuthFactory){
+                                                console.log("authenticated ?");
+                                                console.log(AuthFactory.isLoggedIn());
+                                                return AuthFactory.isLoggedIn();
+                                       }
+                 },
+                controller : 'AboutUsCtrl',
+                controllerAs : 'ctrl'
+            })
+            .state('guests',{
+                url : '/guests',
+                views: {
+                    "nav": {
+                        templateUrl: "../app/home/navigation.html"
+                    },
+                    "content": {
+                        templateUrl: "../app/home/guest.html"
+                    }
+                },
+                resolve: {
+                        authenticated: function (AuthFactory){
+                                                console.log("authenticated ?");
+                                                console.log(AuthFactory.isLoggedIn());
+                                                return AuthFactory.isLoggedIn();
+                                       }
+                 },
+                controller : 'GuestListCtrl',
+                controllerAs : 'ctrl'
+            })
+            .state('seatings',{
+                url : '/seatings',
+                views: {
+                    "nav": {
+                        templateUrl: "../app/home/navigation.html"
+                    },
+                    "content": {
+                        templateUrl: "../app/home/seatings.html"
+                    }
+                },
+                resolve: {
+                        authenticated: function (AuthFactory){
+                                                console.log("authenticated ?");
+                                                console.log(AuthFactory.isLoggedIn());
+                                                return AuthFactory.isLoggedIn();
+                                       }
+                 },
+                controller : 'SeatingsCtrl',
                 controllerAs : 'ctrl'
             })
             .state('profile',{

@@ -2,12 +2,26 @@
 
 module.exports = {
     mysql: "mysql://root:password@123@localhost/wedding_gram?reconnect=true",
+    domain_name: "http://localhost:3000",
     aws: {
-        id: "AKIAIWKXTGYCOTZW6QYA",
-        key: "xFOWIuR0hMbQvsodFa5VenHWwnNf3fDibyjMpZIb",
+        id: "AKIAJ3VUX4BBAF4XXJZA",
+        key: "+AwRTzS3QdwLZ/hcK0ufuvuLJMePQntviHlrkJgs",
         url: "https://nus-stackup.s3.amazonaws.com",
         bucket: "nus-stackup",
         region: "ap-southeast-1"
+    },
+    mailgun_key: "key-24125cce318ec427e9e994cb37d3087b",
+    mailgun_domain: "sandboxe2ef77d2dea04510b84b5c1423ab1087.mailgun.org",
+    register_email: {
+        from: "Weddinggram User <noreply@weddinggram.sg>",
+        subject: "Welcome to StackUp Weddinggram",
+        email_text: "Hello! Thank you for registering with Stackup WeddingGram. Have fun !"
+    },
+    reset_password_email: {
+        from: "noreply@weddinggram.sg",
+        subject: "WeddingGram Password Reset",
+        email_text: "Hello! You recently requested a link to reset your password. Please set a new password on the following link !",
+        email_content: "Hello! <br>You recently requested a link to reset your password. <br>Please set a new password on the following link <br>"
     },
     port: 3000,
     seed: true,

@@ -1,6 +1,6 @@
 <div class="container" ng-controller="RegisterCtrl as ctrl">
 
-    <div class="col-sm-4 col-sm-offset-2">
+    <div class="col-sm-6 col-sm-offset-2">
 
         <br>
         <flash-message
@@ -11,46 +11,60 @@
 
         <!-- LOGIN FORM -->
         <form name="registerForm" ng-submit="ctrl.register()" novalidate autocomplete="off">
-            <div class="form-group input-field col s6">
+            <div class="form-group input-field col s6" ng-class="{ 'has-error': registerForm.emailAddress.$touched && registerForm.emailAddress.$invalid }">
                 <input type="email" class="form-control" ng-model="ctrl.emailAddress"
                        name="emailAddress" placeholder="Email address" required>
                 <div class="help-block"
-                     ng-show="registerForm.emailAddress.$error.required">
-                    <p>Email Address is mandatory</p>
+                     ng-messages="registerForm.emailAddress.$error" ng-if="registerForm.emailAddress.$touched">
+                    <span class="help-inline" ng-message="required">Email Address is mandatory</span>
+                    <span class="help-inline" ng-message="email">Email Address is invalid</span>
                 </div>
             </div>
-            <div class="form-group input-field col s6">
+            <div class="form-group input-field col s6" ng-class="{ 'has-error': registerForm.firstName.$touched && registerForm.firstName.$invalid }">
                 <input type="text" class="form-control" ng-model="ctrl.firstName"
                        name="firstName" placeholder="First Name" required>
                 <div class="help-block"
-                     ng-show="registerForm.firstName.$error.required">
-                    <p>First Name is mandatory</p>
+                     ng-messages="registerForm.firstName.$error" ng-if="registerForm.firstName.$touched">
+                    <span class="help-inline" ng-message="required">First Name is mandatory</span>
                 </div>
             </div>
-            <div class="form-group input-field col s6">
+            <div class="form-group input-field col s6" ng-class="{ 'has-error': registerForm.lastName.$touched && registerForm.lastName.$invalid }">
                 <input type="text" class="form-control" ng-model="ctrl.lastName"
                        name="lastName" placeholder="Last Name" required>
                 <div class="help-block"
-                     ng-show="registerForm.lastName.$error.required">
-                    <p>Last Name is mandatory</p>
+                     ng-messages="registerForm.lastName.$error" ng-if="registerForm.lastName.$touched">
+                    <span class="help-inline" ng-message="required">Last Name is mandatory</span>
                 </div>
             </div>
-            <div class="form-group input-field col s6">
+            <div class="form-group input-field col s6" ng-class="{ 'has-error': registerForm.password.$touched && registerForm.password.$invalid }">
                 <input type="password" class="form-control" ng-model="ctrl.password"
-                       name="password" placeholder="Password" required>
-                <div ng-show="registerForm.password.$invalid">
-                    <p>Password is mandatory.</p>
+                       name="password" placeholder="Password" 
+                       minlength="8" 
+                       ng-pattern ="/^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/"
+                       required>
+                <div class="help-block" 
+                    ng-messages="registerForm.password.$error" ng-if="registerForm.password.$touched">
+                    <span class="help-inline" ng-message="required">Password is mandatory.</span>
+                    <span class="help-inline" ng-message="minlength">Password must be at least 8 characters long.</span>
+                    <span class="help-inline" ng-message="pattern">Password must include a number, a special character (@, #, $), and both upper and lower cases.</span>
                 </div>
             </div>
-            <div class="form-group input-field col s6">
+            <div class="form-group input-field col s6" ng-class="{ 'has-error': registerForm.confirmpassword.$touched && registerForm.confirmpassword.$invalid }">
                 <input type="password" class="form-control" ng-model="ctrl.confirmpassword"
-                       name="confirmpassword" placeholder="Confirm Password" compare-to="ctrl.password" required>
-                <div ng-show="registerForm.confirmpassword.$invalid">
-                    <p>Passwords do not match</p>
+                       name="confirmpassword" placeholder="Confirm Password" 
+                       compare-to="ctrl.password" 
+                       minlength="8" 
+                       ng-pattern ="/^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/"
+                       required>
+                <div class="help-block" 
+                    ng-messages="registerForm.confirmpassword.$error" ng-if="registerForm.confirmpassword.$touched">
+                    <span class="help-inline" ng-message="required">Confirm Password is mandatory.</span>
+                    <span class="help-inline" ng-message="compareTo">Confirm Passwords do not match</span>
+                    <span class="help-inline" ng-message="minlength">Confirm Password must be at least 8 characters long.</span>
+                    <span class="help-inline" ng-message="pattern">Confirm Password must include a number, a special character (@, #, $), and both upper and lower cases.</span>
                 </div>
             </div>
-
-            <button type="submit" class="btn btn-default btn-lg">Register</button>
+            <button type="submit" ng-disabled="registerForm.$invalid" class="btn btn-default btn-lg">Register</button>
         </form>
         <hr>
         <p>

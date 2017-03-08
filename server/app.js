@@ -8,6 +8,7 @@ var flash = require('connect-flash');
 var config = require("./config");
 
 var app = express();
+
 app.use(flash());
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended: false}));

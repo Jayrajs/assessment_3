@@ -11,6 +11,9 @@ const API_POSTS_URI = "/api/posts";
 const API_USERS_URI = "/api/users";
 const API_COMMENTS_URI = "/api/comments";
 const API_AWS_URI = "/api/aws";
+const HOME_PAGE = "/home.html#!/weddinggram";
+const SIGNIN_PAGE = "/home.html#!/signIn";
+
 
 module.exports = function (app, passport) {
     // Posts API
@@ -33,7 +36,8 @@ module.exports = function (app, passport) {
     app.delete(API_USERS_URI + '/:id', isAuthenticated, UserController.remove);
     app.get("/api/user/view-profile", isAuthenticated, UserController.profile);
     app.get("/api/user/social/profiles", isAuthenticated, UserController.profiles);
-
+    app.post("/change-password", isAuthenticated, UserController.changePasswd);
+    
     // Comments API
     app.post(API_COMMENTS_URI, isAuthenticated, CommentController.create);
     app.delete(API_COMMENTS_URI + '/:id', isAuthenticated, CommentController.remove);
@@ -44,14 +48,16 @@ module.exports = function (app, passport) {
 
     app.use(express.static(__dirname + "/../client/"));
 
+    //unprotected end point
     app.post('/register', UserController.register);
-
+    app.post("/reset-password", UserController.resetPasswd);
+    
     app.get('/home', isAuthenticated, function(req, res) {
-        res.redirect('../home.html#/weddinggram');
+        res.redirect('..' + HOME_PAGE);
     });
 
     app.post("/login", passport.authenticate("local", {
-        successRedirect: "/home.html#/weddinggram",
+        successRedirect: HOME_PAGE,
         failureRedirect: "/",
         failureFlash : true
     }));
@@ -61,8 +67,8 @@ module.exports = function (app, passport) {
     }));
 
     app.get("/oauth/google/callback", passport.authenticate("google", {
-        successRedirect: "/home.html#/weddinggram",
-        failureRedirect: "/home.html#/signIn"
+        successRedirect: HOME_PAGE,
+        failureRedirect: SIGNIN_PAGE
     }));
 
     app.get("/oauth/facebook", passport.authenticate("facebook", {
@@ -70,8 +76,8 @@ module.exports = function (app, passport) {
     }));
 
     app.get("/oauth/facebook/callback", passport.authenticate("facebook", {
-        successRedirect: "/home.html#/weddinggram",
-        failureRedirect: "/home.html#/signIn",
+        successRedirect: HOME_PAGE,
+        failureRedirect: SIGNIN_PAGE,
         failureFlash : true
     }));
 
@@ -83,16 +89,16 @@ module.exports = function (app, passport) {
         });
 
     app.get('/oauth/linkedin/callback', passport.authenticate('linkedin', {
-        successRedirect: '/home.html#/weddinggram',
-        failureRedirect: '/home.html#/signIn',
+        successRedirect: HOME_PAGE,
+        failureRedirect: SIGNIN_PAGE,
         failureFlash : true
     }));
 
     app.get('/oauth/wechat', passport.authenticate('wechat'));
 
     app.get('/oauth/wechat/callback', passport.authenticate('wechat', {
-        failureRedirect: '/home.html#/signIn',
-        successReturnToOrRedirect: '/home.html#/weddinggram',
+        failureRedirect: SIGNIN_PAGE,
+        successReturnToOrRedirect: HOME_PAGE,
         failureFlash : true
     }));
 
@@ -101,8 +107,8 @@ module.exports = function (app, passport) {
     // handle the callback after twitter has authenticated the user
     app.get('/oauth/twitter/callback',
         passport.authenticate('twitter', {
-            successRedirect : '/home.html#/weddinggram',
-            failureRedirect : '/home.html#/signIn'
+            successRedirect : HOME_PAGE,
+            failureRedirect : SIGNIN_PAGE
         }));
 
     app.get("/status/user", function (req, res) {

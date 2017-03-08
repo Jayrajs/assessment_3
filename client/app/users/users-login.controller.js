@@ -26,9 +26,9 @@
                         $state.go("SignIn");
                     }
                 }).catch(function () {
-                vm.progressbar.stop();
-                console.error("Error logging on !");
-            });
+                    vm.progressbar.stop();
+                    console.error("Error logging on !");
+                });
         };
     }
 })();

@@ -9,6 +9,8 @@ module.exports = {
         bucket: "nus-stackup",
         region: "ap-southeast-1"
     },
+    mailgun_key: "key-24125cce318ec427e9e994cb37d3087b",
+    mailgun_domain: "sandboxe2ef77d2dea04510b84b5c1423ab1087.mailgun.org",
     port: process.env.PORT || 3000,
     seed: process.env.SEED || false,
     linkedin_key: "81xv9l7ppiocvz",

@@ -1,6 +1,11 @@
 var User = require("../../database").User;
 var AuthProvider = require("../../database").AuthProvider;
 var bcrypt   = require('bcryptjs');
+var config = require("../../config");
+var api_key = config.mailgun_key;
+var domain = config.mailgun_domain;
+var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
+var mailcomposer = require('mailcomposer');
 
 exports.get = function (req, res) {
     User
@@ -36,6 +41,16 @@ exports.register = function(req, res) {
             if(created){
                 user.password = "";
                 res.status(200);
+                var data = {
+                from: config.register_email.from,
+                to: user.email,
+                subject: config.register_email.subject,
+                text: config.register_email.email_text
+                };
+                
+                mailgun.messages().send(data, function (error, body) {
+                    console.log(body);
+                });
                 returnResults(user,res);
             }else{
                 user.password = "";
@@ -57,8 +72,91 @@ exports.list = function (req, res) {
         });
 };
 
+exports.resetPasswd = function (req, res) {
+    console.log(req.body.email);
+    User.findOne({where: {email: req.body.email}})
+        .then(function(result) {
+            var whereClause = {};
+            var reset_password_token = bcrypt.hashSync(req.body.email, bcrypt.genSaltSync(8), null);
+            whereClause.email = req.body.email;
+
+            User
+                .update({ reset_password_token: reset_password_token, 
+                          reset_password_sent_at: new Date()},
+                {where:  whereClause}
+            ).then(function(result){
+                res.json(result);
+            }).catch(function(err){
+                console.log(err);
+                res
+                    .status(500)
+                    .json(err);
+            })    
+
+            var mail = mailcomposer({
+                    from: config.reset_password_email.from,
+                    to: req.body.email,
+                    subject: config.reset_password_email.subject,
+                    text: config.reset_password_email.email_text,
+                    html: config.reset_password_email.email_content 
+                        + config.domain_name + "/home.html#!/ChangeNewpassword?token=" 
+                        + reset_password_token
+                });
+                
+                mail.build(function(mailBuildError, message) {
+                    var dataToSend = {
+                        to: req.body.email,
+                        message: message.toString('ascii')
+                    };
+                
+                    mailgun.messages().sendMime(dataToSend, function (sendError, body) {
+                        if (sendError) {
+                            console.log(sendError);
+                            return;
+                        }
+                    });
+                });    
+            
+        }).catch(function (err) {
+        console.error(err);
+        handleErr(res, err);
+    });
+};
+
+exports.changePasswd = function (req, res) {
+    console.log(req.body.email);
+    console.log(req.body.curr_password);
+    console.log(req.body.NewPassword);
+    console.log(req.body.ConfirmPassword);
+    
+    User.findOne({where: {email: req.body.email}})
+        .then(function(result) {
+            var whereClause = {};
+            var hashPassword = bcrypt.hashSync(req.body.NewPassword, bcrypt.genSaltSync(8), null);
+            whereClause.email = req.body.email;
+            console.log(result.sign_in_count);
+            if(bcrypt.compareSync(req.body.curr_password , result.password)){
+                User
+                    .update({ password: hashPassword, 
+                            sign_in_count: (result.sign_in_count +1)},
+                    {where:  whereClause}
+                ).then(function(result){
+                    console.log("--->");
+                    res.status(202).json(result);
+                }).catch(function(err){
+                    console.log(err);
+                    res
+                        .status(500)
+                        .json(err);
+                })
+            }
+        }).catch(function (err) {
+            console.error(err);
+            handleErr(res, err);
+        });
+};
+
 exports.profile = function (req, res) {
-    console.log("HELLO --> " + req.user.email);
     User.findOne({where: {email: req.user.email}})
         .then(function(result) {
             res.json(result);

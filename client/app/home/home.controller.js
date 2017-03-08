@@ -1,9 +1,9 @@
 (function () {
     angular
         .module("weddingGramApp")
-        .controller("HomePageAppCtrl", ["$q", "AuthFactory", "$rootScope", "$state", HomePageAppCtrl]);
+        .controller("HomePageAppCtrl", ["$q", "AuthFactory", "$rootScope", "$state", "$location", HomePageAppCtrl]);
 
-    function HomePageAppCtrl($q, AuthFactory, $rootScope, $state){
+    function HomePageAppCtrl($q, AuthFactory, $rootScope, $state, $location){
         var vm = this;
 
         AuthFactory.getUserStatus(function(result){
@@ -21,6 +21,12 @@
 
         var defer = $q.defer();
         vm.err = null;
+
+        vm.isActive = function (viewLocation) {
+            //console.log(viewLocation);
+            console.log($location.path());
+            return viewLocation === $location.path();
+        };
     }
 
 })();

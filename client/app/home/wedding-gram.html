@@ -2,7 +2,7 @@
      data-ng-controller="PostListCtrl as ctrl">
     <div class="row w-card" data-ng-repeat="post in ctrl.posts | orderBy: 'createdAt':true track by $index ">
         <div class="col-xs-3 visible-md visible-lg"></div>
-        <div class="col-md-6 col-xs-12">
+        <div>
 
             <div class="posted-by">
                 <span class="profile">
@@ -14,7 +14,7 @@
 
             </div>
 
-            <img ng-src="/api/posts/image/{{post.url}}" style="border: thin solid #ddd;"/>
+            <img class="img-responsive center-block img-rounded" ng-click='ctrl.toggleModal()' width="700" height="400" ng-src="/api/posts/image/{{post.url}}" style="border: thin solid #ddd;"/>
 
             <div class="description">
                 <div class="caption">
@@ -38,13 +38,13 @@
 
     <!-- Modal -->
     <div data-ng-controller="ImageUploadCtrl as uploader">
-        <div class="modal fade"
+        <div class="modal fade" id="uploadImgModal" 
              tabindex="-1"
              role="dialog"
              aria-labelledby="myModalLabel"
              aria-hidden="true"
              data-ng-class="{'show': uploader.showUpload, 'in': uploader.showUpload}">
-            <!--<div class="modal-dialog" role="document">-->
+            <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <form name="form" ng-submit="form.$valid && uploader.submit()">
 
@@ -91,8 +91,12 @@
                         </div>
                     </form>
                 </div>
-            <!--</div>-->
+            </div>
         </div>
         <a class="upload" data-ng-click="uploader.showUpload = true">+</a>
     </div>
 </div>
+
+<script>
+    $('#uploadImgModal').data('bs.modal').handleUpdate()
+</script>
